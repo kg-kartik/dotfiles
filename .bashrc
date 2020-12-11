@@ -4,6 +4,27 @@
 # export PS1;
 # # export FGRED=$(tput setaf 1);
 
+#Cd into common folders
+alias cdp="cd /D/projects/"
+
+# Aliases
+alias gs="git status"
+alias gaa="git add ."
+alias ga="git add"
+alias gd="git diff"
+alias gc="git commit -m"
+alias gl="git log"
+alias gps="git push origin"
+alias gpl="git pull origin"
+alias gprb="git pull --rebase origin"
+
+function gg() {
+    ga "$1" || gaa
+    gc "$2"
+    gps
+}
+
+# Colors
 red=$(tput setaf 1);
 green=$(tput setaf 2);
 yellow=$(tput setaf 3);
