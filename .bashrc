@@ -1,5 +1,6 @@
 # [ -f ~/bin/win-sudo/s/path.sh ] && source ~/bin/win-sudo/s/path.sh
 
+
 # PS1="$(tput setaf 2)\u$(tput setaf 5)@\h \W -> $(tput sgr0)";
 # export PS1;
 # # export FGRED=$(tput setaf 1);
@@ -13,7 +14,7 @@ alias gaa="git add ."
 alias ga="git add"
 alias gd="git diff"
 alias gc="git clone $1"
-alias gcm="git commit -m"
+alias gcm="git commit -m $1"
 alias gl="git log"
 alias gps="git push origin"
 alias gpl="git pull origin"
