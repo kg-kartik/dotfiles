@@ -18,20 +18,20 @@ alias gcm="git commit -m $1"
 alias gl="git log"
 alias gps="git push origin"
 alias gpl="git pull origin"
+alias gsu="git --set-upstream origin master"
 alias gprb="git pull --rebase origin"
 
 #Overwriting local changes
 function pull_force() {
-  git fetch --all
   git reset --hard HEAD
-  git merge @{u}
+  git pull --rebase origin $1
 }
 
 #Keeping local changes
 function pull_stash() {
   git fetch --all
   git stash 
-  git merge a{u}
+  git merge @{u}
   git stash pop
 }
 
