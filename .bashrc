@@ -1,4 +1,4 @@
-# [ -f ~/bin/win-sudo/s/path.sh ] && source ~/bin/win-sudo/s/path.sh
+# [ -f ~/bin/win-sudo/s/path.sh :] && source ~/bin/win-sudo/s/path.sh
 
 # PS1="$(tput setaf 2)\u$(tput setaf 5)@\h \W -> $(tput sgr0)";
 # export PS1;
@@ -18,9 +18,14 @@ alias gcm="git commit -m $1"
 alias gl="git log"
 alias gps="git push origin"
 alias gpl="git pull origin"
+alias gpsu="git push --set-upstream origin"
+alias gar="git remote add origin"
 alias gprb="git pull --rebase origin"
+alias rnb="yarn react-native run-android"
+alias gr="git reset --hard HEAD"
 
 #Overwriting local changes
+
 function pull_force() {
   git fetch --all
   git reset --hard HEAD
@@ -28,14 +33,16 @@ function pull_force() {
 }
 
 #Keeping local changes
+
 function pull_stash() {
   git fetch --all
   git stash 
-  git merge a{u}
+  git merge @{u}
   git stash pop
 }
 
 #Adding,committing and pushing files
+
 function gg() {
     ga "$1" || gaa
     gcm "$2"
@@ -43,11 +50,13 @@ function gg() {
 }
 
 #Hosting local files
+
 function filehost() {
   curl -T "$1" -Lv station307.com 2>&1 | grep located-at
 }
 
-#Knowing current branch and showing it on PS1
+#Knowing current branch
+
 function git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
@@ -62,14 +71,13 @@ cyan=$(tput setf 6);
 bold=$(tput bold);
 reset=$(tput sgr0);
 
-
 PS1="\[${bold}\]\n";
 PS1+="\[${green}\]\u";
 PS1+="\[${magenta}\] at ";
 PS1+="\[${cyan}\]\h";
 PS1+="\[${blue}\] in ";
 PS1+="\[${green}\]\w";
-PS1+="\[${green}\]${git_branch}";
+PS1+=${git_branch};
 PS1+="\n";
 PS1+="\[${reset}\]\$ \[${reset}\]";
 export PS1;
