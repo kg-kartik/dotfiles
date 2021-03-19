@@ -27,9 +27,8 @@ alias gr="git reset --hard HEAD"
 #Overwriting local changes
 
 function pull_force() {
-  git fetch --all
   git reset --hard HEAD
-  git merge @{u}
+  git pull --rebase origin $1
 }
 
 #Keeping local changes
